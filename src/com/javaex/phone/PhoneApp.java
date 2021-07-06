@@ -137,19 +137,9 @@ public class PhoneApp {
 				System.out.print("검색어: ");
 				String keyword = sc.next();
 					
-				PhoneVo sPhoneVo = new PhoneVo(keyword, keyword, keyword);
+				List<PhoneVo> sList = phoneDao.personSearch(keyword);
 				
-				int sCount = phoneDao.personSearch(sPhoneVo);
-				
-				if(sCount>0) {
-					System.out.println("[검색이 완료되었습니다.]");
-				}else {
-					System.out.println("[관리자에게 문의하세요(" + sCount + ")]");
-				}
-				
-				personList = phoneDao.getPersonList();
-				
-				printList(personList);
+				printList(sList);
 			
 				break;
 

@@ -169,11 +169,9 @@ public class PhoneDao {
 	
 	//SEARCH
 	
-	public int personSearch(PhoneVo phoneVo) {
+	public List<PhoneVo> personSearch(String keyword) {
 		
-		int count = -1;
-		
-		String keyword="";
+		List<PhoneVo> personList = new ArrayList<PhoneVo>();
 		
 		this.getConnection();
 		
@@ -197,13 +195,28 @@ public class PhoneDao {
 			
 			rs = pstmt.executeQuery();
 			
+			while (rs.next()) {
+				
+				int personId = rs.getInt("person_id");
+				String name = rs.getString("name");
+				String hp = rs.getString("hp");
+				String company = rs.getString("company");
+				
+				PhoneVo phoneVo = new PhoneVo(personId, name, hp, company);
+							
+				personList.add(phoneVo);
+				
+			}
+			
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
 		
 		this.close();
 		
-		return count;
+		return personList;
+		
+	
 		
 	}
 
