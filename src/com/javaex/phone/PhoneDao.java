@@ -77,7 +77,7 @@ public class PhoneDao {
 			
 			pstmt = conn.prepareStatement(query);
 			
-			pstmt.setInt(5, personId);
+			pstmt.setInt(1, personId);
 			
 			count = pstmt.executeUpdate();
 			
@@ -106,14 +106,17 @@ public class PhoneDao {
 			
 			String query = "";
 			query += " update person ";
-			query += " set hp = ?, ";
+			query += " set name = ?, ";
+			query += "     hp = ?, ";
 			query += "     company = ? ";
 			query += " where person_id = ? ";
 			
 			pstmt = conn.prepareStatement(query);
 			
-			pstmt.setString(1, phoneVo.getHp());
-			pstmt.setString(2, phoneVo.getCompany());
+			pstmt.setString(1, phoneVo.getName());
+			pstmt.setString(2, phoneVo.getHp());
+			pstmt.setString(3, phoneVo.getCompany());
+			pstmt.setInt(4, phoneVo.getPersonId());
 			
 			count = pstmt.executeUpdate();
 			
@@ -146,8 +149,8 @@ public class PhoneDao {
 			
 			pstmt = conn.prepareStatement(query);
 			pstmt.setString(1, phoneVo.getName());
-			pstmt.setString(1, phoneVo.getHp());
-			pstmt.setString(1, phoneVo.getCompany());
+			pstmt.setString(2, phoneVo.getHp());
+			pstmt.setString(3, phoneVo.getCompany());
 			
 			count = pstmt.executeUpdate();
 			
