@@ -82,8 +82,6 @@ public class PhoneApp {
 				
 				System.out.print("번호 : ");
 				int dNum = sc.nextInt();
-				
-				System.out.println("<2.등록>");
 
 				System.out.print(">이름: ");
 				String fName = sc.next();
@@ -96,17 +94,12 @@ public class PhoneApp {
 				
 				PhoneVo uPhoneVo = new PhoneVo(dNum, fName, fHp, fCompany);
 				
-				int uCount = phoneDao.personUpdate(uPhoneVo);
 				
-				if(uCount > 0) {
-					System.out.println("[수정되었습니다.]");
-				} else {
-					System.out.println("[관리자에게 문의하세요(" + uCount + ")]");
-				}
+				phoneDao.personUpdate(uPhoneVo);
 				
-				personList = phoneDao.getPersonList();
 				
-				printList(personList);
+				
+			
 				
 				break;
 				
